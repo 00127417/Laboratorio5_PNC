@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Inicio</title>
+</head>
+<body>
+	<form th:action="@{/guardar}" th:object="${estudiante}" method="post">
+		<label>Nombre: </label><input type="text" th:field="*{nombre}"><br>
+		<span th:errors="*{Nombre}" style="color:#E81505"></span><br>
+		<label>Apellido: </label><input type="text" th:field="*{apellido}"><br>
+		<span th:errors="*{Apellido}" style="color:#E81505"></span><br>
+		<label>Carne: </label><input type="text" th:field="*{carne}"><br>
+		<span th:errors="*{Carne}" style="color:#E81505"></span><br>
+		<label>Carrera: </label><input type="text" th:field="*{carrera}"><br>
+		<span th:errors="*{Carrera}" style="color:#E81505"></span><br>
+		<input type="submit" value="GUARDAR">
+	</form>
+	<br><button onclick="window.location.href='/listado'">LISTADO</button>
+</body>
+</html>
