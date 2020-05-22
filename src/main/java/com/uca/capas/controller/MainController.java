@@ -15,11 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.dao.EstudianteDAO;
 import com.uca.capas.domain.Estudiante;
+import com.uca.capas.service.EstudianteService;
 
 @Controller
 public class MainController {
 	@Autowired
-	private EstudianteDAO estudianteDAO;
+	EstudianteService estudianteService;
 	
 	@RequestMapping("/inicio")
 	public ModelAndView initMain() {
@@ -36,7 +37,23 @@ public class MainController {
 		List<Estudiante> estudiantes = null;
 		
 		try {
-			estudiantes = estudianteDAO.findAll();
+			estudiantes = estudianteService.findAll();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mav.addObject("estudiantes",estudiantes);
+		mav.setViewName("listado");
+		return mav;
+	}	
+	
+	@RequestMapping("/delete")
+	public ModelAndView showNewList(@RequestParam(value = "codigo") int id) {
+		ModelAndView mav = new ModelAndView();
+		List<Estudiante> estudiantes = null;
+		estudianteService.delete(id);
+		try {
+			estudiantes = estudianteService.findAll();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,7 +70,7 @@ public class MainController {
 			mav.setViewName("index");
 		}
 		else{
-			estudianteDAO.insert(estudiante);
+			estudianteService.save(estudiante);
 			Estudiante student = new Estudiante();
 			mav.addObject("estudiante", student);
 			mav.setViewName("index");
@@ -61,4 +78,6 @@ public class MainController {
 		
 		return mav;
 	}
+	
+	
 }

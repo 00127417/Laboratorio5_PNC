@@ -7,6 +7,7 @@
 <body>
 	<table>
 		<thead>
+			<th>Codigo</th>
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Carne</th>
@@ -14,6 +15,7 @@
 		</thead>
 		<th:block th:each="estudiante, row:${estudiantes}">
 			<tr>
+				<th th:text="${estudiante.codigoEstudiante}">
 				<th th:text="${estudiante.nombre}">
 				<th th:text="${estudiante.apellido}">
 				<th th:text="${estudiante.carne}">
@@ -22,6 +24,12 @@
 			
 		</th:block>
 	</table>
-	<button onclick="window.location.href='/inicio'">VOLVER A INGRESAR</button>
+	<button onclick="window.location.href='/inicio'">VOLVER A INGRESAR</button><br>
+	<br>
+	<form action="/delete" method="post">
+		<label>Id estudiante a borrar</label>
+		<input type="number" name="codigo">
+		<input type="submit" value="BORRAR">
+	</form>
 </body>
 </html>

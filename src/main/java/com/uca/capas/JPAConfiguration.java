@@ -10,8 +10,10 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@EnableTransactionManagement
 public class JPAConfiguration {
 	
 	@Bean
@@ -33,7 +35,7 @@ public class JPAConfiguration {
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/ESTUDIANTE");
 		dataSource.setUsername("postgres");
-		dataSource.setPassword("Zacu9867");
+		dataSource.setPassword("Oslo2086");
 		return dataSource;
 	}
 	
